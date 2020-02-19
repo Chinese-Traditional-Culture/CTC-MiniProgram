@@ -2,7 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import './index.scss'
 
-import { AtList, AtListItem } from 'taro-ui'
+import { AtList } from 'taro-ui'
 import { BookItem } from '../../common/item/book'
 
 export default class Index extends Component {

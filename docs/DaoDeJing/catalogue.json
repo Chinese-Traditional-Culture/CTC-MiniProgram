@@ -1,0 +1,14 @@
+{
+    "title": "道德经",
+    "path": "DaoDeJing",
+    "list": [
+        {
+            "name": "第一章",
+            "path": "index.json"
+        },
+        {
+            "name": "第二章",
+            "path": "02.json"
+        }
+    ]
+}
