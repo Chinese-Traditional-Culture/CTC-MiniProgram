@@ -10,13 +10,14 @@ class Book extends Component {
     if(!this.props.item){
       return <View/>
     }
-    const name = this.props.item.name
-    const onClick = this.props.onClick
-    if(this.props.item){
+
+    const{item, onClick} = this.props
+
+    if(item){
       return (
         <View>
         <View className='card_view'>
-          <AtCard extra={name} title={name}>这也是内容区 可以随意定义功能</AtCard>
+          <AtCard extra={item.author} title={item.name} onClick={onClick}>{item.description}</AtCard>
         </View>
         </View>
       )

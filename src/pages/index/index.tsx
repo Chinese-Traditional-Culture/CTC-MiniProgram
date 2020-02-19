@@ -18,7 +18,7 @@ export default class Index extends Component {
 
   componentDidMount () { 
     Taro.request({
-      url:'https://ctccn.renyuzhuo.cn/index/index.json'
+      url:'https://ctc.renyuzhuo.cn/index/index.json'
     }).then(json=>{
       console.log(json)
       console.log(json.data.list)
@@ -30,28 +30,18 @@ export default class Index extends Component {
     })
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
   config: Config = {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#ef5350',
-      navigationBarTitleText: '首页',
-      navigationBarTextStyle: 'white'
+    navigationBarTitleText: '首页',
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#ef5350',
+    navigationBarTextStyle: 'white'
   }
 
   handleClick(item){
     console.log(item)
+    Taro.navigateTo({
+      url: './../read/read'
+    })
   }
 
   render () {
