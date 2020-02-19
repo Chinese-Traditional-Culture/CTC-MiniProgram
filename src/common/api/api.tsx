@@ -1,13 +1,11 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 
-export default class Api extends Component {
+export default {
   get(path){
-    const base_url = 'https://ctc.renyuzhuo.cn'
+    const base_url = 'https://ctc.renyuzhuo.cn/'
 
-    Taro.request({
+    return Taro.request({
       url: base_url + path
-    }).then(response=>{
-
     }).catch(error=>{
       console.log(error)
     })

@@ -2,8 +2,10 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import './index.scss'
 
-import { AtList, AtButton } from 'taro-ui'
+import { AtList } from 'taro-ui'
 import { BookItem } from '../../common/item/book'
+
+import api from './../../common/api/api'
 
 export default class Index extends Component {
 
@@ -43,15 +45,11 @@ export default class Index extends Component {
   }
 
   loadData(){
-    Taro.request({
-      url:'https://ctc.renyuzhuo.cn/index/index.json'
-    }).then(json=>{
+    api.get('index/index.json').then(json=>{
       this.setState({
         list: json.data.list
       })
       Taro.hideLoading()
-    }).catch(error=>{
-      console.log(error)
     })
   }
 

@@ -8,11 +8,14 @@ import { AtCard, AtSwipeAction } from 'taro-ui'
 class Book extends Component {
 
   onClickButton(event){
+    let that = this
     if(event.text === '设置'){
       
     }
     if(event.text === '目录'){
-      
+      Taro.navigateTo({
+        url: './../../pages/catalogue/catalogue?name=' + that.state.item.name + '&book=' + that.state.item.book
+      })
     }
   }
 
@@ -22,6 +25,8 @@ class Book extends Component {
     }
 
     const{item, onClick} = this.props
+
+    this.state.item = item
 
     if(item){
       return (

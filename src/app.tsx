@@ -10,7 +10,7 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/read/read',
-      
+      'pages/catalogue/catalogue',
     ],
     window: {
       navigationBarTitleText: 'CTC 古籍阅读',

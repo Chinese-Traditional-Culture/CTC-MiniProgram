@@ -3,6 +3,8 @@ import { View } from '@tarojs/components'
 import './read.scss'
 import "./../../theme/custom-theme.scss";
 
+import api from './../../common/api/api'
+
 import { AtPagination, AtCard } from 'taro-ui'
 
 export default class Read extends Component {
@@ -69,10 +71,8 @@ export default class Read extends Component {
 
   loadData(book, page){
     let that = this
-    
-    Taro.request({
-      url: 'https://ctc.renyuzhuo.cn/' + book + '/' + page
-    }).then(response=>{
+
+    api.get(book + '/' + page).then(response=>{
       let json = response.data
       Taro.setNavigationBarTitle({
         title: json.title
@@ -89,8 +89,6 @@ export default class Read extends Component {
       })
 
       Taro.hideLoading()
-    }).catch(error=>{
-      console.log(error)
     })
   }
   
