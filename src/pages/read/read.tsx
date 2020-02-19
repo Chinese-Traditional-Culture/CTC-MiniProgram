@@ -47,7 +47,7 @@ export default class Read extends Component {
         description: json.description,
         next: json.next,
         path: json.path,
-        previous: json.previous,
+        prev: json.prev,
         text: json.text,
         title: json.title,
         total: json.total,
@@ -80,11 +80,13 @@ export default class Read extends Component {
   }
 
   nextPage(){
-
+    const{book, next} = this.state
+    this.loadData(book, next)
   }
 
   prevPage(){
-
+    const{book, prev} = this.state
+    this.loadData(book, prev)
   }
 
   render () {
