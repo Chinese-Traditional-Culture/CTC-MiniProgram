@@ -7,6 +7,14 @@ import { AtPagination, AtCard } from 'taro-ui'
 
 export default class Read extends Component {
 
+  config: Config = {
+    navigationBarTitleText: '阅读',
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#ef5350',
+    navigationBarTextStyle: 'white',
+    enablePullDownRefresh: true
+  }
+
   constructor () {
     super(...arguments)
     this.state = {
@@ -25,37 +33,8 @@ export default class Read extends Component {
     }
   }
 
-  config: Config = {
-    navigationBarTitleText: '阅读',
-    backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#ef5350',
-    navigationBarTextStyle: 'white'
-  }
-
-  loadData(book, page){
-    let that = this
-    
-    Taro.request({
-      url: 'https://ctc.renyuzhuo.cn/' + book + '/' + page
-    }).then(response=>{
-      let json = response.data
-      Taro.setNavigationBarTitle({
-        title: json.title
-      })
-      console.log(json)
-      that.setState({
-        description: json.description,
-        next: json.next,
-        path: json.path,
-        prev: json.prev,
-        text: json.text,
-        title: json.title,
-        total: json.total,
-        current: json.current
-      })
-    }).catch(error=>{
-      console.log(error)
-    })
+  onShareAppMessage(){
+    console.log('Share')
   }
 
   componentDidMount(){
@@ -68,9 +47,53 @@ export default class Read extends Component {
       book: book,
       page: page
     })
+
+    Taro.showLoading({
+      title: '加载中'
+    })
     this.loadData(book, page)
   }
 
+  beginLoadData(){
+    const{book, page} = this.state
+    Taro.stopPullDownRefresh()
+    Taro.showLoading({
+      title: '加载中'
+    })
+    this.loadData(book, page)
+  }
+
+  onPullDownRefresh(){
+    this.beginLoadData()
+  }
+
+  loadData(book, page){
+    let that = this
+    
+    Taro.request({
+      url: 'https://ctc.renyuzhuo.cn/' + book + '/' + page
+    }).then(response=>{
+      let json = response.data
+      Taro.setNavigationBarTitle({
+        title: json.title
+      })
+      that.setState({
+        description: json.description,
+        next: json.next,
+        path: json.path,
+        prev: json.prev,
+        text: json.text,
+        title: json.title,
+        total: json.total,
+        current: json.current
+      })
+
+      Taro.hideLoading()
+    }).catch(error=>{
+      console.log(error)
+    })
+  }
+  
   onPageChange(data){
     if(data.type === 'next'){
       this.nextPage()
@@ -81,11 +104,13 @@ export default class Read extends Component {
 
   nextPage(){
     const{book, next} = this.state
+    this.state.page = next
     this.loadData(book, next)
   }
 
   prevPage(){
     const{book, prev} = this.state
+    this.state.page = prev
     this.loadData(book, prev)
   }
 

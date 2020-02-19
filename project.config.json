@@ -4,7 +4,7 @@
 	"description": "CTC",
 	"appid": "wx4ea8a2446133d698",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": false,
 		"postcss": false,
 		"minified": false,

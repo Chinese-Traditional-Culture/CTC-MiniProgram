@@ -1,8 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import Index from './pages/index'
 
-import './theme/custom-theme.scss'
 import './theme/custom.scss'
+import './theme/custom-theme.scss'
 
 class App extends Component {
 
