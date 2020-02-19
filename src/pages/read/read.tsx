@@ -13,9 +13,11 @@ export default class Read extends Component {
       description: '加载中',
       next: null,
       path: null,
-      previous: null,
+      prev: null,
       text: '加载中',
       title: '加载中',
+      total: 0,
+      current: 0
     }
   }
 
@@ -48,7 +50,8 @@ export default class Read extends Component {
         path: json.path,
         previous: json.previous,
         text: json.text,
-        title: json.title
+        title: json.title,
+        total: json.total
       })
     }).catch(error=>{
       console.log(error)
@@ -64,7 +67,7 @@ export default class Read extends Component {
   }
 
   render () {
-    const{ description, next, path, previous, text, title } = this.state
+    const{ description, next, path, previous, text, title, total } = this.state
     return (
       <View className='read'>
         <View className='text'>
@@ -75,7 +78,7 @@ export default class Read extends Component {
         </View>
         <View className='empty'/>
         <View className='page'>
-          <AtPagination className='pagination' total={81} pageSize={1} current={1} icon=true onPageChange={this.onPageChange.bind(this)} />
+          <AtPagination className='pagination' total={total} pageSize={1} current={1} icon=true onPageChange={this.onPageChange.bind(this)} />
         </View>
       </View>
     )
