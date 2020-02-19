@@ -10,6 +10,10 @@ export default class Read extends Component {
   constructor () {
     super(...arguments)
     this.state = {
+      name: null,
+      book: null,
+      page: null,
+
       description: '加载中',
       next: null,
       path: null,
@@ -28,16 +32,11 @@ export default class Read extends Component {
     navigationBarTextStyle: 'white'
   }
 
-  componentDidMount(){
+  loadData(book, page){
     let that = this
-    const { name, path, page } = this.$router.params
-    console.log(name)
-    console.log(path)
-    Taro.setNavigationBarTitle({
-      title:name
-    })
+    
     Taro.request({
-      url: 'https://ctc.renyuzhuo.cn/' + path + '/' + page
+      url: 'https://ctc.renyuzhuo.cn/' + book + '/' + page
     }).then(response=>{
       let json = response.data
       Taro.setNavigationBarTitle({
@@ -51,23 +50,45 @@ export default class Read extends Component {
         previous: json.previous,
         text: json.text,
         title: json.title,
-        total: json.total
+        total: json.total,
+        current: json.current
       })
     }).catch(error=>{
       console.log(error)
     })
   }
 
+  componentDidMount(){
+    const { name, book, page } = this.$router.params
+    Taro.setNavigationBarTitle({
+      title:name
+    })
+    this.setState({
+      name: name,
+      book: book,
+      page: page
+    })
+    this.loadData(book, page)
+  }
+
   onPageChange(data){
     if(data.type === 'next'){
-      nextPage()
+      this.nextPage()
     }else if(data.type === 'prev'){
-      prevPage()
+      this.prevPage()
     }
   }
 
+  nextPage(){
+
+  }
+
+  prevPage(){
+
+  }
+
   render () {
-    const{ description, next, path, previous, text, title, total } = this.state
+    const{ description, next, path, previous, text, title, total, current } = this.state
     return (
       <View className='read'>
         <View className='text'>
@@ -78,7 +99,7 @@ export default class Read extends Component {
         </View>
         <View className='empty'/>
         <View className='page'>
-          <AtPagination className='pagination' total={total} pageSize={1} current={1} icon=true onPageChange={this.onPageChange.bind(this)} />
+          <AtPagination className='pagination' total={total} pageSize={1} current={current} icon=true onPageChange={this.onPageChange.bind(this)} />
         </View>
       </View>
     )

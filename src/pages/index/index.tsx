@@ -38,7 +38,7 @@ export default class Index extends Component {
   handleClick(item){
     console.log(item)
     Taro.navigateTo({
-      url: './../read/read?path=' + item.path + "&name=" + item.name + "&page=index.json"
+      url: './../read/read?name=' + item.name + "&book=" + item.book + "&page=index.json"
     }).then(json=>{
       console.log(json)
     })
