@@ -6,25 +6,17 @@ import './catalogue.scss'
 import {AtListItem} from 'taro-ui'
 
 class Catalogue extends Component {
-
-  config = {
-    navigationBarTitleText: ''
-  }
-
-  handleClick(){
-
-  }
-
   render() {
-    const{item} = this.props
+    const{item, onClick} = this.props
     if(item){
-      this.state.name = item.name
+      this.state.item = item
       return (
-        <AtListItem title={item.name} onClick={this.handleClick.bind(this)} />
+        <AtListItem title={item.name} onClick={onClick} />
       );
     }
 
     return <View/>
   }
 }
+
 export default Catalogue;
