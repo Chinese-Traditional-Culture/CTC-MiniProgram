@@ -53,21 +53,12 @@ export default class Index extends Component {
     })
   }
 
-  handleClick(item){
-    console.log(item)
-    Taro.navigateTo({
-      url: './../read/read?name=' + item.name + "&book=" + item.book + "&page=index.json"
-    }).then(json=>{
-      console.log(json)
-    })
-  }
-
   render () {
     const{list} = this.state
     
     if(list){
       const itemList = list.map((item)=>{
-        return <BookItem item={item} onClick={this.handleClick.bind(this, item)} />
+        return <BookItem item={item}/>
       })
       return (
         <View className='index'>
@@ -80,8 +71,7 @@ export default class Index extends Component {
     }
 
     return (
-      <View className='index'>
-      </View>
+      <View className='index'></View>
     )
   }
 }

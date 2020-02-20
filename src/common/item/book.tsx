@@ -19,6 +19,14 @@ class Book extends Component {
     }
   }
 
+  onClick(){
+    const{item} = this.state
+    console.log(this.state)
+    Taro.navigateTo({
+      url: './../../pages/read/read?name=' + item.name + "&book=" + item.book + "&page=index.json"
+    })
+  }
+
   render () {
     if(!this.props.item){
       return <View/>
@@ -45,10 +53,11 @@ class Book extends Component {
               }
             }
           ]}>
-            <AtCard extra={item.author} title={item.name} onClick={onClick}>{item.description}</AtCard>
+            <AtCard extra={item.author} title={item.name} onClick={this.onClick.bind(this)}>{item.description}</AtCard>
           </AtSwipeAction>
         </View>
       )
     }
   }
 }
+export default Book;
