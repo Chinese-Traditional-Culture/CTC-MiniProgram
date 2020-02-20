@@ -6,6 +6,7 @@ import "./../../theme/custom-theme.scss";
 import api from './../../common/api/api'
 
 import { AtPagination, AtCard } from 'taro-ui'
+import { Artical } from './../artical/artical'
 
 export default class Read extends Component {
 
@@ -147,7 +148,7 @@ export default class Read extends Component {
           <AtCard title='原文' >{text}</AtCard>
         </View>
         <View className='text'>
-          <AtCard title='解析' >{description}</AtCard>
+          <AtCard title='解析' ><Artical markdown={description}/></AtCard>
         </View>
         <View className='empty'/>
         <View className='page'>

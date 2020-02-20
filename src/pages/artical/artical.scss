@@ -1,0 +1,14 @@
+@import "~taro-ui/dist/style/components/article.scss";
+
+.at-article,
+.at-article__h1,
+.at-article__h2,
+.at-article__h3,
+.at-article__info,
+.at-article__p{
+    margin: 0 0 0 0;
+}
+
+.at-article__img{
+    width: 600px;
+}

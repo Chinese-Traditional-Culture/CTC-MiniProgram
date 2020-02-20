@@ -1,0 +1,45 @@
+import Taro, { Component } from '@tarojs/taro'
+import { View, Image } from '@tarojs/components'
+import './artical.scss'
+
+export default class artical extends Component {
+  render () {
+    const{markdown} = this.props
+
+    if(!markdown){
+      return <View/>
+    }
+
+    let lines = markdown.split('\n')
+
+    console.log(markdown.split('\n'))
+
+    let arti = lines.map((item)=>{
+      console.log('index', item.indexOf('img:'))
+      if(item.indexOf('###') == 0){
+        return <View className='at-article__h3'>{item.replace('###', '')}</View>
+      } else if(item.indexOf('##') == 0){
+        return <View className='at-article__h2'>{item.replace('##', '')}</View>
+      } else if(item.indexOf('#') == 0){
+        return <View className='at-article__h1'>{item.replace('#', '')}</View>
+      } else if(item.indexOf('img:') === 0){
+        return <Image className='at-article__img' src={item.replace('img:', '')} mode='widthFix' />
+      } else if(item.indexOf('info:') == 0){
+        return <View className='at-article__info'>{item.replace('info:', '')}</View>
+      } else if(item.indexOf('p:') == 0){
+        return <View className='at-article__p'>{item.replace('p:', '')}</View>
+      } else if(item.indexOf('item:') == 0){
+        return <View>· {item.replace('item:', '')}</View>
+      } else if(item.indexOf('check:') == 0){
+        return <View>□ {item.replace('check:', '')}</View>
+      }
+      return <View>{item}</View>
+    })
+
+    return (
+      <View className='.at-article'>
+        {arti}
+      </View>
+    )
+  }
+}
