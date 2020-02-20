@@ -18,6 +18,10 @@ export default class Catalogue extends Component {
   }
 
   componentDidMount(){
+    Taro.showLoading({
+      title: '加载中'
+    })
+
     let that = this
     const { name, book } = this.$router.params
     Taro.setNavigationBarTitle({
@@ -32,6 +36,8 @@ export default class Catalogue extends Component {
         total:json.total,
         title:json.title
       })
+
+      Taro.hideLoading()
     })
   }
 

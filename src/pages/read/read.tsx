@@ -40,20 +40,42 @@ export default class Read extends Component {
   }
 
   componentDidMount(){
-    const { name, book, page } = this.$router.params
+    let that = this
+    let { name, book, page, isLoadSave } = this.$router.params
+
     Taro.setNavigationBarTitle({
       title:name
     })
-    this.setState({
-      name: name,
-      book: book,
-      page: page
-    })
-
     Taro.showLoading({
       title: '加载中'
     })
-    this.loadData(book, page)
+
+    if(isLoadSave){
+      console.log(isLoadSave)
+      Taro.getStorage({
+        key: book + '_page',
+        success: function(res){
+          console.log('res', res)
+          console.log(res.data)
+          page = res.data
+        },
+        complete: function(){
+          that.setState({
+            name: name,
+            book: book,
+            page: page
+          })
+          that.loadData(book, page)
+        }
+      })
+    }else{
+      that.setState({
+        name: name,
+        book: book,
+        page: page
+      })
+      that.loadData(book, page)
+    }
   }
 
   beginLoadData(){
@@ -73,6 +95,11 @@ export default class Read extends Component {
     let that = this
 
     api.get(book + '/' + page).then(response=>{
+      Taro.setStorage({
+        key: book + '_page',
+        data: page
+      })
+
       let json = response.data
       Taro.setNavigationBarTitle({
         title: json.title
