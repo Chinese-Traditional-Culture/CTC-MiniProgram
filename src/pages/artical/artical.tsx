@@ -33,7 +33,7 @@ export default class artical extends Component {
       } else if(item.indexOf('check:') == 0){
         return <View>□ {item.replace('check:', '')}</View>
       }
-      return <View>{item}</View>
+      return <View className='at-article__p'>{item}</View>
     })
 
     return (
