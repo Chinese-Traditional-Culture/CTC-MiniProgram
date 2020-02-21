@@ -8,9 +8,10 @@ import { AtCard, AtSwipeAction } from 'taro-ui'
 class Book extends Component {
 
   onClickButton(event){
+    const{item, saveCallBack} = this.state
     let that = this
-    if(event.text === '设置'){
-      
+    if(event.text === '保存'){
+      saveCallBack(item)
     }
     if(event.text === '目录'){
       Taro.navigateTo({
@@ -32,20 +33,21 @@ class Book extends Component {
       return <View/>
     }
 
-    const{item, onClick} = this.props
+    const{item, saveCallBack} = this.props
 
     this.state.item = item
+    this.state.saveCallBack = saveCallBack
 
     if(item){
       return (
         <View className='card_view'>
           <AtSwipeAction autoClose onClick={this.onClickButton.bind(this)} options={[
-            // {
-            //   text: '设置',
-            //   style: {
-            //     backgroundColor: '#6190E8'
-            //   }
-            // },
+            {
+              text: '保存',
+              style: {
+                backgroundColor: '#6190E8'
+              }
+            },
             {
               text: '目录',
               style: {

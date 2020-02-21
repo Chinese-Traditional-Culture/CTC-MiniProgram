@@ -4,13 +4,15 @@
             "name": "道德经",
             "author": "老子",
             "description": "《道德经》，又称《老子》，是中国历史上最伟大的名著之一，是道家哲学思想的重要来源。共81章，论述修身、治国、用兵、养生之道，而多以政治为旨归，是中国历史上最伟大的名著之一，是除了《圣经》以外被译成外国文字发布量最多的文化名著。",
-            "book": "DaoDeJing"
+            "book": "DaoDeJing",
+            "ercode": "DaoDeJing.png"
         },
         {
             "name": "三十六计",
             "author": "",
             "description": "《三十六计》或称三十六策，是指中国古代三十六个兵法策略，语源于南北朝，成书于明清。它是根据中国古代军事思想和丰富的斗争经验总结而成的兵书，是中华民族悠久非物质文化遗产之一。",
-            "book": "SanShiLiuJi"
+            "book": "SanShiLiuJi",
+            "ercode": "SanShiLiuJi.png"
         },
         {
             "name": "庄子",
