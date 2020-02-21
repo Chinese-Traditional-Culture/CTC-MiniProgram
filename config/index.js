@@ -22,6 +22,13 @@ const config = {
       'transform-object-rest-spread'
     ]
   },
+  copy: {
+    patterns: [
+      { from: 'src/img/', to: 'dist/common/img/' }
+    ],
+    options: {
+    }
+  },
   plugins: [],
   defineConstants: {
   },
