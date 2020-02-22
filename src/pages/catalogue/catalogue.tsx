@@ -29,7 +29,6 @@ export default class Catalogue extends Component {
     })
     api.get(book + '/catalogue.json').then(response=>{
       let json = response.data
-      console.log(json)
       that.setState({
         book:json.book,
         list:json.list,

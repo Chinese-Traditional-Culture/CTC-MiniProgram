@@ -37,7 +37,6 @@ export default class Read extends Component {
   }
 
   onShareAppMessage(){
-    console.log('Share')
   }
 
   componentDidMount(){
@@ -52,12 +51,9 @@ export default class Read extends Component {
     })
 
     if(isLoadSave){
-      console.log(isLoadSave)
       Taro.getStorage({
         key: book + '_page',
         success: function(res){
-          console.log('res', res)
-          console.log(res.data)
           page = res.data
         },
         complete: function(){

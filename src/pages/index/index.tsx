@@ -27,7 +27,6 @@ export default class Index extends Component {
   }
 
   onShareAppMessage(){
-    console.log('Share')
   }
 
   componentDidMount () {
@@ -57,8 +56,22 @@ export default class Index extends Component {
 
   saveCallBack(item){
     let that = this
-    if(item.ercode){
-      that.generatePoster(item, `../../common/img/${item.ercode}`)
+    if(item.ercode && item.ercode != 'CTC.png'){
+      Taro.showLoading({
+        title: '加载中'
+      })
+      Taro.downloadFile({
+        url: 'https://ctc.renyuzhuo.cn/img/' + item.ercode,
+        success: (result)=>{
+          that.generatePoster(item, result.tempFilePath)
+        },
+        fail: ()=>{
+          that.generatePoster(item, '../../common/img/CTC.png')
+        },
+        complete: ()=>{
+          Taro.hideLoading()
+        }
+      })
     }else{
       that.generatePoster(item, '../../common/img/CTC.png')
     }

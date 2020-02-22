@@ -7,6 +7,12 @@ export default {
     return Taro.request({
       url: base_url + path
     }).catch(error=>{
+      Taro.hideLoading()
+      Taro.showToast({
+        title: '网络错误',
+        icon: "none",
+        duration: 1000
+      })
       console.log(error)
     })
   }

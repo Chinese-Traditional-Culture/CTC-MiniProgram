@@ -29,7 +29,6 @@ export default class Painter extends Component {
   }
 
   onImgOK(e) {
-    console.log('onImgOK', e.detail.path)
     const { save } = this.props
     if (save) {
       this.saveImageToPhotos(e.detail.path)
@@ -39,24 +38,20 @@ export default class Painter extends Component {
   }
 
   onImgErr(e) {
-    console.log('onImgErr', e)
     Taro.hideLoading()
     this.props.onPainterFinished()
   }
 
   saveImageToPhotos (filePath) {
     let that = this
-    // 相册授权
     Taro.getSetting({
       success(res) {
-        // 进行授权检测，未授权则进行弹层授权
         if (!res.authSetting['scope.writePhotosAlbum']) {
           Taro.authorize({
             scope: 'scope.writePhotosAlbum',
             success () {
               that.saveImage(filePath)
             },
-            // 拒绝授权时，则进入手机设置页面，可进行授权设置
             fail() {
               Taro.showModal({
                 title: '提示',
@@ -68,28 +63,15 @@ export default class Painter extends Component {
                 confirmColor: '#ef5350',
                 success(modalRes) {
                   if (modalRes.confirm) {
-                    Taro.openSetting({
-                      success(data) {
-                        console.log("openSetting success");
-                      },
-                      fail(data) {
-                        console.log("openSetting fail");
-                      }
-                    })
-                  } else if (res.cancel) {
-                    console.log('用户点击取消')
+                    Taro.openSetting()
                   }
                 }
               })
             }
           })
         } else {
-          // 已授权则直接进行保存图片
           that.saveImage(filePath)
         }
-      },
-      fail(res) {
-        console.log(res);
       }
     })
   }
@@ -97,20 +79,19 @@ export default class Painter extends Component {
   saveImage (filePath) {
     Taro.saveImageToPhotosAlbum({
       filePath: filePath,
-      success: (res) => {
-        console.log(res)
-        Taro.showModal({
-          showCancel: false,
-          title: '图片已保存到系统相册',
-          content: '快去分享给小伙伴们吧~~',
-          confirmText: '我知道了',
-          confirmColor: '#ef5350',
-          success() {
-          }
+      success: () => {
+        Taro.showToast({
+          title:'图片已保存',
+          icon: 'none',
+          duration: 2500
         })
       },
-      fail: (err) => {
-        console.log(err)
+      fail: () => {
+        Taro.showToast({
+          title:'图片保存失败',
+          icon: 'none',
+          duration: 2500
+        })
       }
     })
   }

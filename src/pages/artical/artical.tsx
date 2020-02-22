@@ -12,10 +12,7 @@ export default class artical extends Component {
 
     let lines = markdown.split('\n')
 
-    console.log(markdown.split('\n'))
-
     let arti = lines.map((item)=>{
-      console.log('index', item.indexOf('img:'))
       if(item.indexOf('###') == 0){
         return <View className='at-article__h3'>{item.replace('###', '')}</View>
       } else if(item.indexOf('##') == 0){

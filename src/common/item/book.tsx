@@ -22,7 +22,6 @@ class Book extends Component {
 
   onClick(){
     const{item} = this.state
-    console.log(this.state)
     Taro.navigateTo({
       url: './../../pages/read/read?name=' + item.name + "&book=" + item.book + "&page=1.json&isLoadSave=true"
     })
