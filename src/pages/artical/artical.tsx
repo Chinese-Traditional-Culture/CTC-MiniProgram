@@ -29,9 +29,11 @@ export default class artical extends Component {
       } else if(item.indexOf('p:') == 0){
         return <View className='at-article__p'>{item.replace('p:', '')}</View>
       } else if(item.indexOf('item:') == 0){
-        return <View>· {item.replace('item:', '')}</View>
+        return <View className='at-article__p'>· {item.replace('item:', '')}</View>
       } else if(item.indexOf('check:') == 0){
         return <View>□ {item.replace('check:', '')}</View>
+      } else if(item.indexOf('button:') == 0){
+        return <Button className='button' open-type="contact" >{item.replace('button:', '')}</Button>
       }
       return <View className='at-article__p'>{item}</View>
     })

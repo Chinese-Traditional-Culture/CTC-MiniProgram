@@ -113,7 +113,9 @@ export default class Read extends Component {
         text: json.text,
         title: json.title,
         total: json.total,
-        current: json.current
+        current: json.current,
+        text_title: json.text_title,
+        description_title: json.description_title
       })
 
       Taro.hideLoading()
@@ -141,14 +143,14 @@ export default class Read extends Component {
   }
 
   render () {
-    const{ description, next, path, previous, text, title, total, current } = this.state
+    const{ description, text, total, current, text_title, description_title } = this.state
     return (
       <View className='read'>
         <View className='text'>
-          <AtCard title='原文' >{text}</AtCard>
+          <AtCard title={text_title ? text_title : "原文"} >{text}</AtCard>
         </View>
         <View className='text'>
-          <AtCard title='解析' ><Artical markdown={description}/></AtCard>
+          <AtCard title={description_title ? description_title : "解析"} ><Artical markdown={description}/></AtCard>
         </View>
         <View className='empty'/>
         <View className='page'>
