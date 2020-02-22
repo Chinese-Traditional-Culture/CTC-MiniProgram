@@ -1,5 +1,5 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Button } from '@tarojs/components'
 import './read.scss'
 import "./../../theme/custom-theme.scss";
 
@@ -32,7 +32,8 @@ export default class Read extends Component {
       text: '加载中',
       title: '加载中',
       total: 0,
-      current: 0
+      current: 0,
+      error: false
     }
   }
 
@@ -111,7 +112,8 @@ export default class Read extends Component {
         total: json.total,
         current: json.current,
         text_title: json.text_title,
-        description_title: json.description_title
+        description_title: json.description_title,
+        error: false
       })
 
       Taro.hideLoading()
@@ -138,12 +140,41 @@ export default class Read extends Component {
     this.loadData(book, prev)
   }
 
+  onClickError(){
+    const{name, book, page} = this.state
+    let that = this
+    Taro.setClipboardData({
+      data: `name: ${name}, book: ${book}, page: ${page}`,
+      success: ()=>{
+        that.setState({
+          error: true
+        })
+      }
+    })
+  }
+
+  onClickCallBack(){
+    this.setState({
+      error: false
+    })
+  }
+
   render () {
-    const{ description, text, total, current, text_title, description_title } = this.state
+    const{ description, text, total, current, error, text_title, description_title } = this.state
     return (
       <View className='read'>
         <View className='text'>
-          <AtCard title={text_title ? text_title : "原文"} >{text}</AtCard>
+          <AtCard title={text_title ? text_title : "原文"} >
+            {text}
+            {
+              !error &&
+              <View className='error' onClick={this.onClickError.bind(this)}>报错</View>
+            }
+            {
+              error &&
+              <Button className='button' open-type="contact" onClick={this.onClickCallBack.bind(this)}>点击反馈</Button>
+            }
+          </AtCard>
         </View>
         <View className='text'>
           <AtCard title={description_title ? description_title : "解析"} ><Artical markdown={description}/></AtCard>
