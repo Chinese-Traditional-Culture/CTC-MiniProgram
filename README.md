@@ -8,10 +8,10 @@
 
 ## 使用截图
 
-![截图](https://ctc.renyuzhuo.cn/screenshot/IMG_1308.png)
-![截图](https://ctc.renyuzhuo.cn/screenshot/IMG_1309.png)
-![截图](https://ctc.renyuzhuo.cn/screenshot/IMG_1314.png)
-![截图](https://ctc.renyuzhuo.cn/screenshot/IMG_1315.png)
+<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1314.png' width='200' />
+<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1315.png' width='200' /><br/>
+<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1308.png' width='200' />
+<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1309.png' width='200' />
 
 ## LICENSE
 
