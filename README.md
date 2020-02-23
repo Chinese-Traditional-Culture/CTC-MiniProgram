@@ -8,10 +8,7 @@
 
 ## 使用截图
 
-<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1314.png' width='200' />
-<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1315.png' width='200' /><br/>
-<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1308.png' width='200' />
-<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1309.png' width='200' />
+<img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1314.png' width='300' /><img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1315.png' width='300' /><br/><img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1308.png' width='300' /><img src='https://ctc.renyuzhuo.cn/screenshot/IMG_1309.png' width='300' />
 
 ## LICENSE
 
