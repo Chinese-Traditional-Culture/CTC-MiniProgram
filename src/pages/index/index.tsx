@@ -46,7 +46,7 @@ export default class Index extends Component {
   }
 
   loadData(){
-    api.get('index/index.json').then(json=>{
+    api.get('index/index-test.json').then(json=>{
       this.setState({
         list: json.data.list
       })

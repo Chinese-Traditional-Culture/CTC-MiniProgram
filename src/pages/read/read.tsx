@@ -165,7 +165,7 @@ export default class Read extends Component {
       <View className='read'>
         <View className='text'>
           <AtCard title={text_title ? text_title : "原文"} >
-            {text}
+            <Artical markdown={text}/>
             {
               !error &&
               <View className='error' onClick={this.onClickError.bind(this)}>报错</View>
