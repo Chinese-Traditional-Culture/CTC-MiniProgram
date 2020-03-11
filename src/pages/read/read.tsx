@@ -102,6 +102,10 @@ export default class Read extends Component {
       Taro.setNavigationBarTitle({
         title: json.title
       })
+      let is_formate_text = json.is_formate_text
+      if(is_formate_text == undefined){
+        is_formate_text = false
+      }
       that.setState({
         description: json.description,
         next: json.next,
@@ -112,6 +116,7 @@ export default class Read extends Component {
         total: json.total,
         current: json.current,
         text_title: json.text_title,
+        is_formate_text: is_formate_text,
         description_title: json.description_title,
         error: false
       })
@@ -160,12 +165,19 @@ export default class Read extends Component {
   }
 
   render () {
-    const{ description, text, total, current, error, text_title, description_title } = this.state
+    const{ description, text, total, current, error, text_title, description_title, is_formate_text } = this.state
     return (
       <View className='read'>
         <View className='text'>
           <AtCard title={text_title ? text_title : "原文"} >
-            <Artical markdown={text}/>
+            {
+              is_formate_text &&
+              <Artical markdown={text}/>
+            }
+            {
+              !is_formate_text &&
+              <View>{text}</View>
+            }
             {
               !error &&
               <View className='error' onClick={this.onClickError.bind(this)}>报错</View>

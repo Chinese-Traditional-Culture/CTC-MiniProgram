@@ -31,6 +31,10 @@ export default class artical extends Component {
         return <View>□ {item.replace('check:', '')}</View>
       } else if(item.indexOf('button:') == 0){
         return <Button className='button' open-type="contact" >{item.replace('button:', '')}</Button>
+      } else if(item.indexOf('title:') == 0){
+        return <View className='article__h2'>· {item.replace('title:', '')}</View>
+      } else if(item.indexOf('author:') == 0){
+        return <View className='at-article__info'>· {item.replace('author:', '')}</View>
       }
       return <View className='at-article__p'>{item}</View>
     })
