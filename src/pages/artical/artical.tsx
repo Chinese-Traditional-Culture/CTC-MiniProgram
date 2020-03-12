@@ -28,7 +28,7 @@ export default class artical extends Component {
       } else if(item.indexOf('check:') == 0){
         return <View>□ {item.replace('check:', '')}</View>
       } else if(item.indexOf('title:') == 0){
-        return <View className='article__h1'>{item.replace('title:', '')}</View>
+        return <View className='at-article__h2'>{item.replace('title:', '')}</View>
       } else if(item.indexOf('author:') == 0){
         return <View className='at-article__info'>{item.replace('author:', '')}</View>
       } else if(item.indexOf('button:') == 0){
