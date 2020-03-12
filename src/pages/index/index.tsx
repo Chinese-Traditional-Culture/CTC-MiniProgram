@@ -11,7 +11,7 @@ import api from './../../common/api/api'
 export default class Index extends Component {
 
   config: Config = {
-    navigationBarTitleText: '首页',
+    navigationBarTitleText: 'CTC 古籍阅读',
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#ef5350',
     navigationBarTextStyle: 'white',
