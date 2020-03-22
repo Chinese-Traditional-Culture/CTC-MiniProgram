@@ -89,6 +89,7 @@ export default class Index extends Component {
           <AtList hasBorder={false}>
             {itemList}
           </AtList>
+          <official-account></official-account>
           <View className='empty'/>
           {
             posterData && <Painter style='position:fixed;top:-9999rpx' data={posterData} save onPainterFinished={this.onPainterFinished.bind(this)} />
